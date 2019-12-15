@@ -1,5 +1,7 @@
 # 2048 The Game
 
+## This Project is a work in progress
+
 ### Created in Vanilla Javascript, HTML5 and CSS
 
 > ## Controls

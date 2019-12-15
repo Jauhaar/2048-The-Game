@@ -1,4 +1,9 @@
-// TODO: Load game with two 2's or one 2 and one 4 in random cells
+// TODO: Implement movement
+// TODO: Implement score tracking
+// TODO: Implement on screen controls
+// TODO: Implement restart
+//
+// DONE: Load game with two 2's or one 2 and one 4 in random cells
 
 // change the class of the child of each cell
 
@@ -25,7 +30,36 @@ var cell_2_4 = document.querySelector('.cell-2-4');
 var cell_3_4 = document.querySelector('.cell-3-4');
 var cell_4_4 = document.querySelector('.cell-4-4');
 
+// -- INITIALISE GAME --
 window.addEventListener('load', InitialiseGame());
+
+document.addEventListener('keyup', function(e) {
+  console.log(e.key);
+  // Move('right');
+});
+
+function Move(dir) {
+  let direction = dir;
+  let canMove;
+  let row1 = [cell_1_1, cell_2_1, cell_3_1, cell_4_1];
+
+  row1.forEach(cell => {
+    cellChildClassList = cell.firstElementChild.classList;
+    siblingChildClassList = cell.nextElementSibling.firstElementChild.classList;
+    if (cell != row1[3] && siblingChildClassList.contains('empty')) {
+      canMove = true;
+    } else {
+      canMove = false;
+    }
+
+    if (canMove) {
+      cell.firstElementChild.classList.remove('num-2');
+      cell.firstElementChild.classList.add('empty');
+      cell.nextElementSibling.firstElementChild.classList.remove('empty');
+      cell.nextElementSibling.firstElementChild.classList.add('num-2');
+    }
+  });
+}
 
 function InitialiseGame() {
   let cell1 = GetRandomCell();
